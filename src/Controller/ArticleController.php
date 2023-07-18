@@ -23,7 +23,16 @@ class ArticleController extends AbstractController
         ));
     }
 
-    // Don't use get to add data to the database. This gets changed to Post later in the tutorial
+    #[Route('/article/num/{id}', methods: ['get'])]
+    final function show(EntityManagerInterface $entityManager, string $id): Response
+    {
+        $article = $entityManager->getRepository(Article::class)->find($id);
+
+        return $this->render('articles/show.html.twig', array(
+            'article' => $article,
+        ));
+    }
+
     #[Route('/article/save', methods: ['get'])]
     final function save(EntityManagerInterface $entityManager): Response
     {
@@ -35,7 +44,9 @@ class ArticleController extends AbstractController
         $entityManager->persist($article);
         $entityManager->flush();
 
-        return new Response('Saved new product with id '.$article->getId());
+        return $this->render('articles/show.html.twig', array(
+            'article' => $article,
+        ));
     }
 
 }

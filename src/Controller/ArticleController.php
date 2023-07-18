@@ -8,18 +8,17 @@ use Symfony\Component\Routing\Annotation\Route;
 
 class ArticleController extends AbstractController
 {
-    #[Route('/', methods:['get'])]
-    final function index() : Response
+    #[Route('/', methods: ['get'])]
+    final function index(): Response
     {
-//        return new Response('
-//            <html lang="en">
-//                <body>
-//                    <div>Hello</div>
-//                </body>
-//            </html>
-//        ');
-        return $this->render('articles/index.html.twig',array(
-            'name' => 'TrainingsController',
+        $articles = [
+            'Article1',
+            'Article2',
+            'Article3'
+        ];
+
+        return $this->render('articles/index.html.twig', array(
+            'articles' => $articles,
         ));
     }
 }

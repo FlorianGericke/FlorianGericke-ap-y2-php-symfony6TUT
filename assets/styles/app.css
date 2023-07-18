@@ -9,3 +9,7 @@
 .nav-item:hover{
     @apply text-gray-600
 }
+
+.btn-primary{
+    @apply text-white bg-black hover:bg-blue-800 rounded-lg text-sm px-5 py-2.5 mx-2 my-2
+}

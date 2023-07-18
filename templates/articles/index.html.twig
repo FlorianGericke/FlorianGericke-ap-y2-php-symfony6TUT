@@ -5,7 +5,32 @@
 {% endblock %}
 
 {% block body %}
-
-        <h1>This is a test {{ name }}</h1>
-
+    {% if articles %}
+        <div class="p-8">
+        <table class="text-xl w-full table-auto text-left">
+            <thead class="border-b-2 text-white">
+            <tr class="bg-gray-600">
+                <th class="ml-1">Article Title</th>
+                <th class="ml-1">Article Actions</th>
+            </tr>
+            </thead>
+            <tbody class="table-auto">
+            {% for article in articles %}
+                <tr class="even:bg-gray-400 odd:bg-gray-200 p-1 ">
+                    <td>
+                        <span class=" ml-1 inline-block align-middle">
+                            {{ article }}
+                        </span>
+                    </td>
+                    <td>
+                        <a class="btn-primary inline-block align-middle" href="/article/1">Go To Article</a>
+                    </td>
+                </tr>
+            {% endfor %}
+            </tbody>
+        </table>
+    {% else %}
+        <h1>No Articles are listed</h1>
+    {% endif %}
+        </div>
 {% endblock %}

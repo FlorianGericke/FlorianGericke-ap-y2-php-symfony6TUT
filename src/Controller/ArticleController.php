@@ -18,6 +18,8 @@ class ArticleController extends AbstractController
 //                </body>
 //            </html>
 //        ');
-        return $this->render('articles/index.html.twig');
+        return $this->render('articles/index.html.twig',array(
+            'name' => 'TrainingsController',
+        ));
     }
 }

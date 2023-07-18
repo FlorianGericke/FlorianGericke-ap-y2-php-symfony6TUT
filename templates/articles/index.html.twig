@@ -10,8 +10,10 @@
         <table class="text-xl w-full table-auto text-left">
             <thead class="border-b-2 text-white">
             <tr class="bg-gray-600">
-                <th class="ml-1">Article Title</th>
-                <th class="ml-1">Article Actions</th>
+                <th class="ml-1">Title</th>
+                <th class="ml-1">Body</th>
+                <th class="ml-1">Quality</th>
+                <th class="ml-1">Actions</th>
             </tr>
             </thead>
             <tbody class="table-auto">
@@ -19,7 +21,17 @@
                 <tr class="even:bg-gray-400 odd:bg-gray-200 p-1 ">
                     <td>
                         <span class=" ml-1 inline-block align-middle">
-                            {{ article }}
+                            {{ article.title }}
+                        </span>
+                    </td>
+                    <td>
+                        <span class=" ml-1 inline-block align-middle">
+                            {{ article.body }}
+                        </span>
+                    </td>
+                    <td>
+                        <span class=" ml-1 inline-block align-middle">
+                            {{ article.quality}}
                         </span>
                     </td>
                     <td>

@@ -14,13 +14,9 @@ use Symfony\Component\Routing\Annotation\Route;
 class ArticleController extends AbstractController
 {
     #[Route('/', methods: ['get'])]
-    final function index(): Response
+    final function index(EntityManagerInterface $entityManager): Response
     {
-        $articles = [
-            'Article1',
-            'Article2',
-            'Article3'
-        ];
+        $articles = $entityManager->getRepository(Article::class)->findAll();
 
         return $this->render('articles/index.html.twig', array(
             'articles' => $articles,

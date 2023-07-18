@@ -17,3 +17,8 @@ Tutorial Course from Traversy Media on [YouTube](https://www.youtube.com/playlis
     $php bin/console make:migration
     $php bin/console doctrine:migrations:migrate
 ```
+
+## Run SQL Query with Doctrine in the command line
+```shell
+    $php bin/console doctrine:query:sql 'select * from article'
+```

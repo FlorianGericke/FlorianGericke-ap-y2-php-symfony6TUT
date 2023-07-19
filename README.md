@@ -1,4 +1,4 @@
-# Symfony 4 Tutorial
+# Symfony 6 Tutorial
 
 Simple Learning project for Symfony 6.
 

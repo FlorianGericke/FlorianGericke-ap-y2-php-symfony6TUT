@@ -39,19 +39,19 @@ class ArticleController extends AbstractController
         ));
     }
 
-    #[Route('/article/save', methods: ['get'])]
-    final function save(EntityManagerInterface $entityManager): Response
+    #[Route('/article/edit/{id}', methods: ['GET', 'POST'])]
+    final function edit(Request $res, EntityManagerInterface $entityManager, int $id): Response
     {
-        $article = new Article();
-        $article->setTitle('Article One');
-        $article->setBody('Body1');
-        $article->setQuality('poor');
+        $article = $entityManager->getRepository(Article::class)->find($id);
+        $form = $this->getForm($article, $res, 'Update');
 
-        $entityManager->persist($article);
-        $entityManager->flush();
+        if ($form->isSubmitted() && $form->isValid()) {
+            $entityManager->flush();
+            return $this->redirectToRoute('article_list');
+        }
 
-        return $this->render('articles/show.html.twig', array(
-            'article' => $article,
+        return $this->render('articles/edit.html.twig', array(
+            'form' => $form->createView()
         ));
     }
 

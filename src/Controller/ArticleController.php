@@ -87,4 +87,15 @@ class ArticleController extends AbstractController
             'form' => $form->createView()
         ));
     }
+
+    #[Route('/article/delete/{articleIdToDelete}', methods: ['DELETE'])]
+    final function deleteArticle(EntityManagerInterface $entityManager, Request $res, int $articleIdToDelete): void
+    {
+        $article = $entityManager->getRepository(Article::class)->find($articleIdToDelete);
+        $entityManager->remove($article);
+        $entityManager->flush();
+
+        $res = new Response();
+        $res->send();
+    }
 }

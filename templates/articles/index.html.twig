@@ -7,7 +7,7 @@
 {% block body %}
     {% if articles %}
         <div class="p-8">
-        <table class="text-xl w-full table-auto text-left">
+        <table class="text-xl w-full table-auto text-left" id="table">
             <thead class="border-b-2 text-white">
             <tr class="bg-gray-600">
                 <th class="ml-1">Title</th>
@@ -16,7 +16,7 @@
                 <th class="ml-1">Actions</th>
             </tr>
             </thead>
-            <tbody class="table-auto">
+            <tbody>
             {% for article in articles %}
                 <tr class="even:bg-gray-400 odd:bg-gray-200 p-1 ">
                     <td>
@@ -34,8 +34,9 @@
                             {{ article.quality}}
                         </span>
                     </td>
-                    <td>
-                        <a class="btn-primary inline-block align-middle" href="/article/num/{{ article.id }}">Go To Article</a>
+                    <td class="flex content-around" >
+                        <a class="btn-primary inline-block align-middle flex-auto text-center" href="/article/num/{{ article.id }}">Go To Article</a>
+                        <a class="btn-danger deleteButton inline-block align-middle flex-auto text-center" data-id="{{ article.id }}" href="#">Delete Article</a>
                     </td>
                 </tr>
             {% endfor %}
@@ -46,3 +47,4 @@
     {% endif %}
         </div>
 {% endblock %}
+

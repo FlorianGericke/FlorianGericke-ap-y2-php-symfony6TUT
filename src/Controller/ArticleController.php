@@ -6,6 +6,7 @@ use App\Entity\Article;
 use Doctrine\ORM\EntityManagerInterface;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\Form\FormInterface;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Routing\Annotation\Route;
@@ -55,24 +56,10 @@ class ArticleController extends AbstractController
     }
 
     #[Route('/article/add', methods: ['GET', 'POST'])]
-    final function addArticle(Request $res, EntityManagerInterface $entityManager): Response
+    final function add(Request $res, EntityManagerInterface $entityManager, LoggerInterface $logger): Response
     {
         $article = new Article();
-        $form = $this->createFormBuilder($article)
-            ->add('Title', TextType::class, array('attr' =>
-                array('class' => 'form-control')))
-            ->add('Body', TextareaType::class, array('attr' =>
-                array('class' => 'form-control'),
-                'required' => false))
-            ->add('Quality', TextareaType::class, array('attr' =>
-                array('class' => 'form-control'),
-                'required' => false))
-            ->add('Save', SubmitType::class, array('attr' =>
-                array('class' => 'btn-primary'),
-                'label' => 'Create'))
-            ->getForm();
-
-        $form->handleRequest($res);
+        $form = $this->getForm($article, $res, 'Create');
 
         if ($form->isSubmitted() && $form->isValid()) {
             $article = $form->getData();
@@ -97,5 +84,34 @@ class ArticleController extends AbstractController
 
         $res = new Response();
         $res->send();
+    }
+
+    /**
+     * @param Article $article
+     * @param Request $res
+     * @return FormInterface
+     */
+    final function getForm(Article $article, Request $res, string $buttonCaption): FormInterface
+    {
+        $form = $this->createFormBuilder($article)
+            ->add('Title', TextType::class,
+                array('attr' =>
+                    array('class' => 'form-control w-full', 'maxlength' => 50)))
+            ->add('Body', TextareaType::class,
+                array('attr' =>
+                    array('class' => 'form-control w-full form-body-input'),
+                ))
+            ->add('Author', TextType::class,
+                array('attr' =>
+                    array('class' => 'form-control w-full', 'maxlength' => 50),
+                ))
+            ->add('Save', SubmitType::class,
+                array('attr' =>
+                    array('class' => 'btn-primary'),
+                    'label' => $buttonCaption))
+            ->getForm();
+
+        $form->handleRequest($res);
+        return $form;
     }
 }

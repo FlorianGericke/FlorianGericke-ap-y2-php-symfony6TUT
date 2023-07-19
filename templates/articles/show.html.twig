@@ -5,12 +5,17 @@
 {% endblock %}
 
 {% block body %}
-    <div class="container w-min">
-        <h1>{{ article.title }}</h1>
-        <p>{{ article.body }}</p>
-        <p>{{ article.quality }}</p>
+    <div class="container w-full">
+        <div class="flex justify-between">
+            <h1>{{ article.title }}</h1>
+            <p>{{ article.author }}</p>
+        </div>
         <hr>
-        <a href="/" class="btn-primary inline-block align-middle">Go Back</a>
+            <div class="mt-10 ml-10 mr-5">
+              {{ article.body | raw}}
+            </div>
+        <div class="flex justify-end">
+            <a href="/" class="btn-primary inline-block align-middle justify-end">Go Back</a>
+        </div>
     </div>
-
 {% endblock %}

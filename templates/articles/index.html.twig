@@ -11,8 +11,7 @@
             <thead class="border-b-2 text-white">
             <tr class="bg-gray-600">
                 <th class="ml-1">Title</th>
-                <th class="ml-1">Body</th>
-                <th class="ml-1">Quality</th>
+                <th class="ml-1">Author</th>
                 <th class="ml-1">Actions</th>
             </tr>
             </thead>
@@ -26,16 +25,12 @@
                     </td>
                     <td>
                         <span class=" ml-1 inline-block align-middle">
-                            {{ article.body }}
-                        </span>
-                    </td>
-                    <td>
-                        <span class=" ml-1 inline-block align-middle">
-                            {{ article.quality}}
+                            {{ article.author}}
                         </span>
                     </td>
                     <td class="flex content-around" >
                         <a class="btn-primary inline-block align-middle flex-auto text-center" href="/article/num/{{ article.id }}">Go To Article</a>
+                        <a class="btn-primary inline-block align-middle flex-auto text-center" href="/article/edit/{{ article.id }}">Edit Article</a>
                         <a class="btn-danger deleteButton inline-block align-middle flex-auto text-center" data-id="{{ article.id }}" href="#">Delete Article</a>
                     </td>
                 </tr>

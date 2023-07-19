@@ -1,0 +1,15 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}
+    Update SymphArt Articles
+{% endblock %}
+
+{% block body %}
+    <div class="flex items-center w-full justify-center mt-40">
+        <div class="flex items-center justify-center w-full p-6  bg-gray-400 border-black border-4">
+            {{ form_start(form) }}
+            {{ form_widget(form) }}
+            {{ form_end(form) }}
+        </div>
+    </div>
+{% endblock %}

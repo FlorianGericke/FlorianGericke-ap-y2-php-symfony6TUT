@@ -1,7 +1,20 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+body{
+    @apply bg-gray-500
+}
 
+h1{
+    @apply text-4xl font-bold p-6
+}
+
+form{
+    @apply w-full
+}
+.form-body-input{
+    @apply h-96
+}
 .nav-item{
     @apply inline-block px-5 py-2 text-white
 }
@@ -11,9 +24,9 @@
 }
 
 .btn-primary{
-    @apply text-white bg-black hover:bg-blue-800 rounded-lg text-sm px-5 py-2.5 mx-2 my-2
+    @apply text-white bg-black  hover:bg-gray-500  rounded-lg text-sm px-5 py-2.5 mx-2 my-2
 }
 
 .btn-danger{
-    @apply text-white bg-red-900 hover:bg-blue-800 rounded-lg text-sm px-5 py-2.5 mx-2 my-2
+    @apply text-white bg-red-900 hover:bg-gray-500 rounded-lg text-sm px-5 py-2.5 mx-2 my-2
 }

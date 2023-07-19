@@ -34,6 +34,8 @@ class ArticleController extends AbstractController
     {
         $article = $entityManager->getRepository(Article::class)->find($id);
 
+        $article->setBody(str_replace(PHP_EOL, '<br>', $article->getBody()));
+
         return $this->render('articles/show.html.twig', array(
             'article' => $article,
         ));

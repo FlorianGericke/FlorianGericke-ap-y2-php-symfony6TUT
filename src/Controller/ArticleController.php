@@ -89,7 +89,7 @@ class ArticleController extends AbstractController
     }
 
     #[Route('/article/delete/{articleIdToDelete}', methods: ['DELETE'])]
-    final function deleteArticle(EntityManagerInterface $entityManager, Request $res, int $articleIdToDelete): void
+    final function delete(EntityManagerInterface $entityManager, int $articleIdToDelete): void
     {
         $article = $entityManager->getRepository(Article::class)->find($articleIdToDelete);
         $entityManager->remove($article);

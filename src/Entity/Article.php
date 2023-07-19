@@ -3,6 +3,7 @@
 namespace App\Entity;
 
 use App\Repository\ArticleRepository;
+use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
 
 #[ORM\Entity(repositoryClass: ArticleRepository::class)]
@@ -13,14 +14,14 @@ class Article
     #[ORM\Column]
     private ?int $id = null;
 
-    #[ORM\Column(length: 100, nullable: true)]
+    #[ORM\Column(length: 50, nullable: true)]
     private ?string $title = null;
 
-    #[ORM\Column(length: 255, nullable: true)]
+    #[ORM\Column(type: Types::TEXT, nullable: true)]
     private ?string $body = null;
 
-    #[ORM\Column(length: 255)]
-    private ?string $quality = null;
+    #[ORM\Column(length: 50)]
+    private ?string $author = null;
 
     public function getId(): ?int
     {
@@ -51,14 +52,14 @@ class Article
         return $this;
     }
 
-    public function getQuality(): ?string
+    public function getAuthor(): ?string
     {
-        return $this->quality;
+        return $this->author;
     }
 
-    public function setQuality(string $quality): static
+    public function setAuthor(string $author): static
     {
-        $this->quality = $quality;
+        $this->author = $author;
 
         return $this;
     }

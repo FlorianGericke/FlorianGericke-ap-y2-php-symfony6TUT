@@ -58,7 +58,7 @@ class ArticleController extends AbstractController
     }
 
     #[Route('/article/add', methods: ['GET', 'POST'])]
-    final function add(Request $res, EntityManagerInterface $entityManager, LoggerInterface $logger): Response
+    final function add(Request $res, EntityManagerInterface $entityManager): Response
     {
         $article = new Article();
         $form = $this->getForm($article, $res, 'Create');
